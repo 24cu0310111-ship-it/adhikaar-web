@@ -22,7 +22,6 @@ import {
   Coins,
   Cloud,
   Download,
-  Play,
   Volume2,
   Server,
   Sparkles,
@@ -39,9 +38,6 @@ interface ProjectShowcasePanelProps {
 export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGetStarted }) => {
   const [activeDiagramTab, setActiveDiagramTab] = useState<'main' | 'recovery' | 'human'>('main');
   const [activeScenario, setActiveScenario] = useState<number>(0);
-  const [activeAudioPlaying, setActiveAudioPlaying] = useState<string | null>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
   const handleSelectDiagramTab = (tab: 'main' | 'recovery' | 'human') => {
     setActiveDiagramTab(tab);
     sounds.playTick();
@@ -50,33 +46,6 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
   const handleSelectScenario = (idx: number) => {
     setActiveScenario(idx);
     sounds.playTick();
-  };
-
-  useEffect(() => {
-    return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current = null;
-      }
-    };
-  }, []);
-
-  const handleToggleAudio = (file: string) => {
-    if (activeAudioPlaying === file) {
-      audioRef.current?.pause();
-      setActiveAudioPlaying(null);
-    } else {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-      const audio = new Audio(`/samples/${file}`);
-      audioRef.current = audio;
-      audio.play().catch(() => {});
-      setActiveAudioPlaying(file);
-      audio.onended = () => {
-        setActiveAudioPlaying(null);
-      };
-    }
   };
 
   // Mermaid diagrams
@@ -503,33 +472,9 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
                     {audio.intent}
                   </p>
                 </div>
-                <div className="pt-3 border-t border-[#222222] flex items-center justify-between">
-                  <button
-                    type="button"
-                    onClick={() => handleToggleAudio(audio.file)}
-                    className="inline-flex items-center gap-1.5 text-xs font-mono px-2.5 py-1 rounded bg-white/10 hover:bg-white/20 border border-white/20 text-white cursor-pointer transition-all"
-                  >
-                    {activeAudioPlaying === audio.file ? (
-                      <>
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        <span>Pause</span>
-                      </>
-                    ) : (
-                      <>
-                        <Play className="w-3 h-3 fill-white" />
-                        <span>Listen</span>
-                      </>
-                    )}
-                  </button>
-
-                  <a 
-                    href={`/samples/${audio.file}`} 
-                    download
-                    className="inline-flex items-center gap-1 text-xs font-mono text-zinc-400 hover:text-white transition-colors"
-                  >
-                    <Download className="w-3 h-3" />
-                    <span>Download WAV</span>
-                  </a>
+                <div className="pt-3 border-t border-[#222222] flex items-center justify-between text-[11px] font-mono text-[#666666]">
+                  <span className="text-zinc-400">{audio.file}</span>
+                  <span>16 kHz Mono</span>
                 </div>
               </div>
             ))}
