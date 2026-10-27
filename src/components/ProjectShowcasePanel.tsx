@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { 
   ArrowRight, 
   Send, 
@@ -728,9 +728,9 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
             <div className="w-8 h-8 rounded bg-[#141414] border border-[#222222] flex items-center justify-center text-white mb-4">
               <Compass className="w-4 h-4 text-white" />
             </div>
-            <h3 className="font-display font-bold text-lg text-white mb-2">Available Benefits Guidance Agent</h3>
+            <h3 className="font-display font-bold text-lg text-white mb-2">Autonomous Benefit Guidance</h3>
             <p className="text-sm text-[#888888] leading-relaxed font-sans">
-              Conversational agent that actively guides citizens through all available welfare schemes they qualify for. It translates complex statutory criteria into plain regional language, identifies missing requisites, and walks users step-by-step through claiming their entitlements.
+              An autonomous agent that guides the user about all available welfare benefits, matching applicant profiles against scheme catalogues, clarifying documentation needs, and walking citizens through each entitlement step in their regional language.
             </p>
           </div>
         </div>
