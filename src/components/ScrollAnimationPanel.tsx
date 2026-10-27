@@ -32,7 +32,7 @@ const PHASES: PhaseDetail[] = [
     label: "PHASE 02: DUAL-HEAD VISION MATRIX",
     headline: "Simultaneous Category & Quality Classification",
     description: "Dual-head ResNet-18 separates Aadhaar cards, Bank Passbooks, and Land RoR while assessing image sharpness to intercept blurry photos before portal submission.",
-    metric: "Classification Accuracy: 96.8% | Dual-Head ResNet-18",
+    metric: "Auto-Submit Gate: 0.85 | Dual-Head ResNet-18 (Doc Type & Quality)",
   },
   {
     index: 2,

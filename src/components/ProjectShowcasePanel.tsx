@@ -149,7 +149,7 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
       scenario: "Scenario C: Blurry Image Escalation",
       voice: "voice_sample_ta.wav",
       docs: ["aadhaar_sample.png", "land_record_blurry.png", "bank_passbook_sample.png"],
-      expected: "Sharpness score 0.62 < 0.85 gate; interrupts graph to live Caseworker SSE desk."
+      expected: "Confidence score 0.76 < 0.85 gate; interrupts graph to live Caseworker SSE desk."
     },
     {
       scenario: "Scenario D1: 422 Auto-Recovery",
@@ -176,7 +176,7 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
       latency: "4.2s end-to-end",
       outcome: "Matched PM-KISAN. Direct portal reference MOCK-PORTAL-001 generated with bilingual Telegram receipt.",
       breakdown: [
-        "Acoustic: Sarvam ASR transcribes Tamil audio with 98.2% character accuracy.",
+        "Acoustic: Sarvam ASR normalizes and transcribes Tamil audio (0.917 confidence).",
         "Vision: ResNet-18 verifies Land RoR sharpness (0.94) and category.",
         "LLM Radar: Land extent '1.5 Hectares' grounded against OCR coordinates.",
         "Rules: Evaluated 1.5 <= 2.0 -> ELIGIBLE. Submitted with idempotency key."
@@ -204,7 +204,7 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
       statusColor: "text-blue-400 border-blue-400/30 bg-blue-950/20",
       overview: "Citizen uploads a heavily blurred Aadhaar card photographed in low evening lighting. The system protects against false rejections.",
       latency: "850ms interception",
-      outcome: "Dual-head quality score (0.62) falls below 0.85 threshold. Interrupts graph cleanly to Caseworker live review desk.",
+      outcome: "Dual-head confidence score (0.76) falls below 0.85 auto-submit threshold. Interrupts graph cleanly to Caseworker live review desk.",
       breakdown: [
         "Quality Head: Flags optical blurriness before corrupt tokens reach LLM.",
         "Safety Gate: Prevents invalid hallucinated Aadhaar numbers.",
@@ -223,7 +223,7 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
       breakdown: [
         "Portal Response: HTTP 422 Unprocessable Entity (Missing/Invalid IFSC).",
         "Autonomous Handler: Isolates passbook bounding box coordinates.",
-        "Targeted OCR: Re-runs high-resolution morphological kernel specifically for IFSC.",
+        "Targeted Extraction: Single-field recovery (extract_field) re-parses passbook OCR text for IFSC.",
         "Idempotent Retry: Re-posts with identical key; portal confirms 201 Created."
       ]
     },
@@ -845,9 +845,9 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
             <div className="w-8 h-8 rounded bg-[#141414] border border-[#222222] flex items-center justify-center text-white mb-4">
               <Lock className="w-4 h-4 text-white" />
             </div>
-            <h4 className="font-display font-bold text-base text-white mb-2">Ephemeral Vault with 30-Min TTL</h4>
+            <h4 className="font-display font-bold text-base text-white mb-2">30-Min Session TTL & 7-Day Vault</h4>
             <p className="text-xs text-[#888888] leading-relaxed font-sans">
-              Citizen voice notes and document photos are stored in an encrypted local volume. If no activity occurs within 30 minutes, all raw binary media is automatically deleted.
+              Active conversation sessions auto-expire after 30 minutes of inactivity (ACTIVE_CASE_MAX_AGE_SECONDS = 1800). Uploaded documents are stored in local ephemeral storage with 7-day retention (RETENTION_DAYS = 7) or purged immediately via /delete.
             </p>
           </div>
 
