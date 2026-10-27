@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   ArrowRight, 
   Send, 
@@ -25,7 +25,8 @@ import {
   Volume2,
   Server,
   Sparkles,
-  GitBranch
+  GitBranch,
+  Compass
 } from 'lucide-react';
 import { launchTelegramBot, TELEGRAM_WEB_A, TELEGRAM_WEB_K } from '../utils/telegram';
 import { MermaidChart } from './MermaidChart';
@@ -725,11 +726,11 @@ export const ProjectShowcasePanel: React.FC<ProjectShowcasePanelProps> = ({ onGe
 
           <div className="surface-card p-6 rounded border border-[#222222]">
             <div className="w-8 h-8 rounded bg-[#141414] border border-[#222222] flex items-center justify-center text-white mb-4">
-              <Users className="w-4 h-4" />
+              <Compass className="w-4 h-4 text-white" />
             </div>
-            <h3 className="font-display font-bold text-lg text-white mb-2">Human Reviewer Escalation</h3>
+            <h3 className="font-display font-bold text-lg text-white mb-2">Available Benefits Guidance Agent</h3>
             <p className="text-sm text-[#888888] leading-relaxed font-sans">
-              If document quality is blurry or confidence drops below 0.85, graph execution pauses cleanly via LangGraph interrupt(). Cases route to an internal caseworker dashboard with live Server-Sent Events.
+              Conversational agent that actively guides citizens through all available welfare schemes they qualify for. It translates complex statutory criteria into plain regional language, identifies missing requisites, and walks users step-by-step through claiming their entitlements.
             </p>
           </div>
         </div>
