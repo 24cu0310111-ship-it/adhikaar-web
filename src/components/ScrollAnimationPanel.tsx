@@ -257,8 +257,8 @@ export const ScrollAnimationPanel: React.FC<ScrollAnimationPanelProps> = ({ onBa
             className="w-full h-full object-contain block select-none pointer-events-none"
           />
 
-          {/* Left Narrative Card (Frosted Glassmorphism) */}
-          <div className="absolute left-6 md:left-14 bottom-14 md:bottom-20 z-30 max-w-xl pointer-events-auto">
+          {/* Left Narrative Card (Frosted Glassmorphism - moved up to avoid any collision) */}
+          <div className="absolute left-6 md:left-14 bottom-24 md:bottom-32 z-30 max-w-lg md:max-w-xl pointer-events-auto">
             {/* Ambient Refraction Halo behind Narrative Glass Card */}
             <div 
               className="absolute -inset-4 rounded-3xl pointer-events-none opacity-50 -z-10"
@@ -290,14 +290,14 @@ export const ScrollAnimationPanel: React.FC<ScrollAnimationPanelProps> = ({ onBa
             </div>
           </div>
 
-          {/* Initial Clean Scroll Prompt (Disappears upon scroll) */}
+          {/* Initial Clean Scroll Prompt (Border removed, positioned with ample clearance) */}
           {!hasScrolled && (
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center transition-opacity duration-500">
-              <div className="flex flex-col items-center gap-2 px-6 py-2.5 rounded-full bg-black/65 border border-white/25 backdrop-blur-md shadow-2xl">
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center transition-opacity duration-500">
+              <div className="flex flex-col items-center gap-1.5 px-5 py-2 rounded-full bg-black/45 backdrop-blur-sm shadow-lg">
                 <span className="font-sans font-light text-xs tracking-[0.28em] uppercase text-white drop-shadow-sm">
                   Scroll down to animate
                 </span>
-                <ChevronDown className="w-3.5 h-3.5 text-white animate-bounce" strokeWidth={1.25} />
+                <ChevronDown className="w-3.5 h-3.5 text-white/80 animate-bounce" strokeWidth={1.25} />
               </div>
             </div>
           )}
