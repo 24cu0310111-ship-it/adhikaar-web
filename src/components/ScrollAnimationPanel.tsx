@@ -232,7 +232,7 @@ export const ScrollAnimationPanel: React.FC<ScrollAnimationPanelProps> = ({ onBa
         <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#000000]">
           <div className="w-48 mb-4">
             <div className="flex items-center justify-between font-mono text-xs text-[#888888] mb-1">
-              <span>LOADING MOTION</span>
+              <span>LOADING</span>
               <span className="text-white font-bold">{loadProgress}%</span>
             </div>
             <div className="w-full h-1 bg-[#222222] rounded-sm overflow-hidden">
@@ -290,14 +290,11 @@ export const ScrollAnimationPanel: React.FC<ScrollAnimationPanelProps> = ({ onBa
             </div>
           </div>
 
-          {/* Initial Clean Scroll Prompt (Border removed, positioned with ample clearance) */}
+          {/* Initial Clean Scroll Prompt (Animate text removed per user request) */}
           {!hasScrolled && (
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 pointer-events-none flex flex-col items-center transition-opacity duration-500">
-              <div className="flex flex-col items-center gap-1.5 px-5 py-2 rounded-full bg-black/45 backdrop-blur-sm shadow-lg">
-                <span className="font-sans font-light text-xs tracking-[0.28em] uppercase text-white drop-shadow-sm">
-                  Scroll down to animate
-                </span>
-                <ChevronDown className="w-3.5 h-3.5 text-white/80 animate-bounce" strokeWidth={1.25} />
+              <div className="flex flex-col items-center p-2 rounded-full bg-black/45 backdrop-blur-sm shadow-lg">
+                <ChevronDown className="w-4 h-4 text-white/80 animate-bounce" strokeWidth={1.5} />
               </div>
             </div>
           )}
@@ -337,7 +334,7 @@ export const ScrollAnimationPanel: React.FC<ScrollAnimationPanelProps> = ({ onBa
                 <div>
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 border border-white/25 text-xs font-mono text-white mb-3 backdrop-blur-md shadow-inner">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300" />
-                    <span>MOTION PIPELINE COMPLETE</span>
+                    <span>INTAKE PIPELINE COMPLETE</span>
                   </div>
                   <h3 className="font-vintage text-3xl md:text-4xl text-white font-normal drop-shadow-sm">
                     Launch ADHIKAAR on Telegram
